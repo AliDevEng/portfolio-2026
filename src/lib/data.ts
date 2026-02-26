@@ -118,7 +118,7 @@ export const skillCategories: SkillCategory[] = [
   { name: "Data", items: ["SQL", "MySQL", "SQLite"] },
   {
     name: "Cloud / DevOps",
-    items: ["Microsoft Azure (AZ-900)", "Docker", "CI/CD (CircleCI)"],
+    items: ["Microsoft Azure", "Docker", "CI/CD"],
   },
   {
     name: "Tools",

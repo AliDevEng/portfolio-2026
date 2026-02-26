@@ -3,35 +3,29 @@
 import Section from "@/components/Section";
 import { skillCategories } from "@/lib/data";
 import type { IconType } from "react-icons";
-import {
-  SiAdobephotoshop,
-  SiBitbucket,
-  SiCircleci,
-  SiConfluence,
-  SiDocker,
-  SiDotnet,
-  SiFigma,
-  SiGit,
-  SiJavascript,
-  SiJira,
-  SiMysql,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiReact,
-  SiSqlite,
-  SiSpring,
-  SiTailwindcss,
-  SiTrello,
-  SiTypescript,
-  SiOpenjdk,
-  SiSharp,
-} from "react-icons/si";
+import { SiCircleci, SiConfluence, SiDotnet, SiJira } from "react-icons/si";
 import {
   TbApi,
-  TbBrandAzure,
   TbBraces,
+  TbBrandAdobe,
+  TbBrandAzure,
+  TbBrandBitbucket,
+  TbBrandCSharp,
+  TbBrandDocker,
+  TbBrandFigma,
+  TbBrandGit,
+  TbBrandJavascript,
+  TbBrandMysql,
+  TbBrandNextjs,
+  TbBrandNodejs,
+  TbBrandReact,
+  TbBrandTailwind,
+  TbBrandTrello,
+  TbBrandTypescript,
+  TbCoffee,
   TbDatabase,
   TbFileDescription,
+  TbLeaf,
   TbShieldCheck,
   TbTestPipe,
   TbUsers,
@@ -42,30 +36,30 @@ const allSkills = skillCategories.flatMap((cat) =>
 );
 
 const iconBySkill: Record<string, IconType> = {
-  "C#": SiSharp,
-  TypeScript: SiTypescript,
-  JavaScript: SiJavascript,
-  Java: SiOpenjdk,
-  React: SiReact,
-  "Next.js": SiNextdotjs,
-  "Tailwind CSS": SiTailwindcss,
-  "Node.js": SiNodedotjs,
+  "C#": TbBrandCSharp,
+  TypeScript: TbBrandTypescript,
+  JavaScript: TbBrandJavascript,
+  Java: TbCoffee,
+  React: TbBrandReact,
+  "Next.js": TbBrandNextjs,
+  "Tailwind CSS": TbBrandTailwind,
+  "Node.js": TbBrandNodejs,
   "REST APIs": TbApi,
   SQL: TbDatabase,
-  MySQL: SiMysql,
-  SQLite: SiSqlite,
+  MySQL: TbBrandMysql,
+  SQLite: TbDatabase,
   ".NET Core": SiDotnet,
-  Spring: SiSpring,
-  "Microsoft Azure (AZ-900)": TbBrandAzure,
-  Docker: SiDocker,
-  "CI/CD (CircleCI)": SiCircleci,
-  Git: SiGit,
+  Spring: TbLeaf,
+  "Microsoft Azure": TbBrandAzure,
+  Docker: TbBrandDocker,
+  "CI/CD": SiCircleci,
+  Git: TbBrandGit,
   Jira: SiJira,
-  Trello: SiTrello,
-  Bitbucket: SiBitbucket,
+  Trello: TbBrandTrello,
+  Bitbucket: TbBrandBitbucket,
   Confluence: SiConfluence,
-  Figma: SiFigma,
-  Photoshop: SiAdobephotoshop,
+  Figma: TbBrandFigma,
+  Photoshop: TbBrandAdobe,
   Agile: TbUsers,
   Documentation: TbFileDescription,
   "Testing mindset": TbTestPipe,
@@ -126,8 +120,11 @@ function TechMarqueeRow({
 
           return (
             <div key={`${skill.name}-${index}`} className="tech-card group">
-              <span className="relative z-10 flex h-8 w-8 items-center justify-center shrink-0 text-red-500/90">
-                <Icon className="h-5.5 w-5.5 tech-card-icon" />
+              <span className="relative z-10 flex h-11 w-11 items-center justify-center shrink-0 text-red-500/90">
+                <Icon
+                  className="h-[2.15rem] w-[2.15rem] tech-card-icon"
+                  strokeWidth={1.5}
+                />
               </span>
               <div className="relative z-10 leading-tight">
                 <p className="text-[1.1rem] leading-none font-semibold text-white uppercase tracking-tight whitespace-nowrap">
