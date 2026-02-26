@@ -53,9 +53,8 @@ export interface Project {
   title: string;
   description: string;
   tech: string[];
-  image: string;
-  demo: string;
   source: string;
+  confidential?: boolean;
 }
 
 export interface AtsSection {

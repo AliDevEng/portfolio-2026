@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { ExternalLink, Github } from "lucide-react";
+import { Github, FolderOpen, Lock } from "lucide-react";
 import { motion } from "framer-motion";
 import Section from "@/components/Section";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
@@ -31,23 +30,19 @@ export default function Projects() {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <Card className="group overflow-hidden hover:border-red-500/30 transition-all hover:shadow-lg hover:shadow-red-500/5 h-full flex flex-col">
-                {/* Thumbnail */}
-                <div className="relative aspect-video overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950/60 to-transparent" />
-                </div>
+                {/* Accent bar */}
+                <div className="h-1 w-full bg-gradient-to-r from-red-500 to-rose-500" />
 
                 <CardContent className="flex-1 p-6">
-                  <h3 className="text-lg font-semibold text-white">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-gray-400 leading-relaxed">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-500/10 text-red-400">
+                      <FolderOpen className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white leading-snug">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-gray-400 leading-relaxed">
                     {project.description}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-1.5">
@@ -59,27 +54,29 @@ export default function Projects() {
                   </div>
                 </CardContent>
 
-                <CardFooter className="p-6 pt-0 gap-3">
-                  <Button variant="outline" size="sm" asChild>
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                <CardFooter className="p-6 pt-0">
+                  {project.confidential ? (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled
+                      className="opacity-60 cursor-not-allowed"
                     >
-                      <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
-                      Live
-                    </a>
-                  </Button>
-                  <Button variant="outline" size="sm" asChild>
-                    <a
-                      href={project.source}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Github className="mr-1.5 h-3.5 w-3.5" />
-                      Source
-                    </a>
-                  </Button>
+                      <Lock className="mr-1.5 h-3.5 w-3.5" />
+                      Confidential
+                    </Button>
+                  ) : (
+                    <Button variant="outline" size="sm" asChild>
+                      <a
+                        href={project.source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="mr-1.5 h-3.5 w-3.5" />
+                        Source
+                      </a>
+                    </Button>
+                  )}
                 </CardFooter>
               </Card>
             </motion.div>

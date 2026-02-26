@@ -21,7 +21,21 @@ export default function About() {
         </h2>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-2 items-center">
-          {/* Left – text + stats */}
+          {/* Left – illustration */}
+          <div className="relative mx-auto w-full max-w-sm">
+            <div className="relative aspect-square">
+              <Image
+                src={aboutData.image}
+                alt="Developer illustration"
+                fill
+                className="object-contain drop-shadow-[0_0_30px_rgba(239,68,68,0.15)]"
+                sizes="(max-width: 768px) 100vw, 380px"
+                priority
+              />
+            </div>
+          </div>
+
+          {/* Right – text + stats */}
           <div>
             <Card className="border-l-2 border-l-red-500 border-t-0 border-r-0 border-b-0 rounded-none bg-transparent">
               <CardContent className="py-6 pl-6">
@@ -31,7 +45,7 @@ export default function About() {
               </CardContent>
             </Card>
 
-            <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {aboutData.stats.map((stat) => (
                 <Card
                   key={stat.label}
@@ -44,22 +58,6 @@ export default function About() {
                 </Card>
               ))}
             </div>
-          </div>
-
-          {/* Right – image */}
-          <div className="relative mx-auto w-full max-w-md">
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden border border-gray-800 shadow-2xl shadow-red-500/5">
-              <Image
-                src={aboutData.image}
-                alt={`Portrait of Ali Rezai`}
-                fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                sizes="(max-width: 768px) 100vw, 400px"
-                priority
-              />
-            </div>
-            {/* Decorative glow */}
-            <div className="absolute -inset-1 -z-10 rounded-2xl bg-gradient-to-br from-red-500/20 to-rose-500/20 blur-xl opacity-50" />
           </div>
         </div>
       </div>

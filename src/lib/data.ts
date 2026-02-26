@@ -67,9 +67,8 @@ export const aboutData: AboutData = {
   stats: [
     { label: "Current Role", value: "Internship: Peak Energy" },
     { label: "Core Stack", value: "Node.js • TypeScript • React • SQL" },
-    { label: "Cloud", value: "Microsoft Azure (AZ-900)" },
   ],
-  image: "/profile.svg",
+  image: "/projects/developer.png",
 };
 
 /* ─── Experience ─── */
@@ -141,31 +140,35 @@ export const skillCategories: SkillCategory[] = [
 /* ─── Projects ─── */
 export const projects: Project[] = [
   {
-    title: "Fullstack Car Rental System",
+    title: "Car Rental Management System – Backend API (.NET)",
     description:
-      "Full-stack booking and admin flows with a structured domain model, REST API integration, and SQL persistence.",
-    tech: ["Java", "Spring Boot", "MySQL", "JavaScript"],
-    image: "/projects/project-1.svg",
-    demo: "#",
-    source: "#",
+      "Scalable RESTful backend API built with .NET 10 and Clean Architecture principles, designed for managing car inventory, bookings, and administrative operations. Features a layered architecture with Entity Framework Core, code-first migrations, and a foundation for JWT-based authentication.",
+    tech: [
+      ".NET 10",
+      "C#",
+      "ASP.NET Core",
+      "Entity Framework Core",
+      "MySQL",
+      "REST API",
+      "Clean Architecture",
+    ],
+    source: "https://github.com/AliDevEng/car-rental-api-net10",
   },
   {
-    title: "Library / Student Management System",
+    title: "Fullstack Car Rental System (Java)",
     description:
-      "CRUD workflows with validation, role-aware operations, and stable REST endpoints backed by SQL.",
-    tech: ["Java", "Spring Boot", "REST API", "SQL"],
-    image: "/projects/project-2.svg",
-    demo: "#",
-    source: "#",
+      "End-to-end car rental platform with booking workflows, admin dashboards, and customer-facing views. Built with a structured domain model, RESTful API layer using Spring Boot, and SQL persistence via MySQL. Includes role-based access and data validation across the full stack.",
+    tech: ["Java", "Spring Boot", "MySQL", "JavaScript", "REST API"],
+    source:
+      "https://github.com/AliDevEng/Fullstack-car-rental-and-admin-management-system",
   },
   {
-    title: "Energy-Tech Internship Contributions",
+    title: "Energy-Tech Internship – Production Contributions",
     description:
-      "Production-grade improvements and features delivered during internship (non-confidential overview), with focus on maintainability and reliability.",
+      "Delivered production-grade backend and frontend improvements during internship at an energy-tech company. Focused on building reliable REST APIs, React-based UI features, and SQL-backed data flows within Agile workflows, Docker containers, and CI/CD pipelines.",
     tech: ["Node.js", "TypeScript", "React", "SQL", "Docker", "CI/CD"],
-    image: "/projects/project-3.svg",
-    demo: "#",
     source: "#",
+    confidential: true,
   },
 ];
 
