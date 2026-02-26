@@ -1,15 +1,84 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Section from "@/components/Section";
 import { skillCategories } from "@/lib/data";
+import type { IconType } from "react-icons";
+import {
+  SiAdobephotoshop,
+  SiBitbucket,
+  SiCircleci,
+  SiConfluence,
+  SiDocker,
+  SiDotnet,
+  SiFigma,
+  SiGit,
+  SiJavascript,
+  SiJira,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiReact,
+  SiSqlite,
+  SiSpring,
+  SiTailwindcss,
+  SiTrello,
+  SiTypescript,
+  SiOpenjdk,
+  SiSharp,
+} from "react-icons/si";
+import {
+  TbApi,
+  TbBrandAzure,
+  TbBraces,
+  TbDatabase,
+  TbFileDescription,
+  TbShieldCheck,
+  TbTestPipe,
+  TbUsers,
+} from "react-icons/tb";
 
-/* Flatten all skills into individual cards */
 const allSkills = skillCategories.flatMap((cat) =>
   cat.items.map((skill) => ({ name: skill, category: cat.name })),
 );
 
+const iconBySkill: Record<string, IconType> = {
+  "C#": SiSharp,
+  TypeScript: SiTypescript,
+  JavaScript: SiJavascript,
+  Java: SiOpenjdk,
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  "Tailwind CSS": SiTailwindcss,
+  "Node.js": SiNodedotjs,
+  "REST APIs": TbApi,
+  SQL: TbDatabase,
+  MySQL: SiMysql,
+  SQLite: SiSqlite,
+  ".NET Core": SiDotnet,
+  Spring: SiSpring,
+  "Microsoft Azure (AZ-900)": TbBrandAzure,
+  Docker: SiDocker,
+  "CI/CD (CircleCI)": SiCircleci,
+  Git: SiGit,
+  Jira: SiJira,
+  Trello: SiTrello,
+  Bitbucket: SiBitbucket,
+  Confluence: SiConfluence,
+  Figma: SiFigma,
+  Photoshop: SiAdobephotoshop,
+  Agile: TbUsers,
+  Documentation: TbFileDescription,
+  "Testing mindset": TbTestPipe,
+  "Quality assurance": TbShieldCheck,
+};
+
+const fallbackIcon = TbBraces;
+
 export default function SkillsGrid() {
+  const splitIndex = Math.ceil(allSkills.length / 2);
+  const topRow = allSkills.slice(0, splitIndex);
+  const bottomRow = allSkills.slice(splitIndex);
+
   return (
     <Section id="skills">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -22,63 +91,56 @@ export default function SkillsGrid() {
           </h2>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4">
-          {allSkills.map((skill, idx) => (
-            <motion.div
-              key={skill.name}
-              whileHover={{ y: -3, scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 400, damping: 20 }}
-              className="group"
-            >
-              <div className="flex items-center gap-3 rounded-xl border border-gray-800 bg-gray-950/60 backdrop-blur-sm px-5 py-3.5 hover:border-red-500/30 hover:shadow-lg hover:shadow-red-500/5 transition-all cursor-default">
-                {/* Icon placeholder — styled monogram */}
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-red-600/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase shrink-0">
-                  {getInitials(skill.name)}
-                </span>
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-white uppercase tracking-wide leading-tight">
-                    {skill.name}
-                  </p>
-                  <p className="text-[10px] uppercase tracking-widest text-gray-500 mt-0.5">
-                    {skill.category}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+        <div className="space-y-8">
+          <TechMarqueeRow items={topRow} direction="left" />
+          <TechMarqueeRow items={bottomRow} direction="right" />
         </div>
       </div>
     </Section>
   );
 }
 
-/** Generate 2-letter initials from a skill name */
-function getInitials(name: string): string {
-  // Handle special cases
-  const map: Record<string, string> = {
-    TypeScript: "TS",
-    JavaScript: "JS",
-    React: "Re",
-    "Next.js": "Nx",
-    "Tailwind CSS": "Tw",
-    "Node.js": "No",
-    "REST APIs": "AP",
-    SQL: "SQ",
-    MySQL: "My",
-    SQLite: "SL",
-    "Microsoft Azure (AZ-900)": "Az",
-    Docker: "Dk",
-    "CI/CD (CircleCI)": "CI",
-    Git: "Gi",
-    Jira: "Ji",
-    Trello: "Tr",
-    Bitbucket: "Bb",
-    Confluence: "Cf",
-    Agile: "Ag",
-    Documentation: "Dc",
-    "Testing mindset": "Ts",
-    "Quality assurance": "QA",
-    Java: "Ja",
-  };
-  return map[name] || name.slice(0, 2).toUpperCase();
+type SkillItem = {
+  name: string;
+  category: string;
+};
+
+function TechMarqueeRow({
+  items,
+  direction,
+}: {
+  items: SkillItem[];
+  direction: "left" | "right";
+}) {
+  const scrollingItems = [...items, ...items];
+
+  return (
+    <div className="tech-marquee">
+      <div
+        className={`tech-marquee-track ${
+          direction === "left" ? "tech-marquee-left" : "tech-marquee-right"
+        }`}
+      >
+        {scrollingItems.map((skill, index) => {
+          const Icon = iconBySkill[skill.name] ?? fallbackIcon;
+
+          return (
+            <div key={`${skill.name}-${index}`} className="tech-card group">
+              <span className="relative z-10 flex h-8 w-8 items-center justify-center shrink-0 text-red-500/90">
+                <Icon className="h-5.5 w-5.5 tech-card-icon" />
+              </span>
+              <div className="relative z-10 leading-tight">
+                <p className="text-[1.1rem] leading-none font-semibold text-white uppercase tracking-tight whitespace-nowrap">
+                  {skill.name}
+                </p>
+                <p className="mt-0.5 text-[10px] uppercase tracking-wide text-slate-500">
+                  Technology
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 }

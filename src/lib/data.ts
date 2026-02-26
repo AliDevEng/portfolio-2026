@@ -112,9 +112,9 @@ export const experienceEntries: ExperienceEntry[] = [
 
 /* ─── Skills ─── */
 export const skillCategories: SkillCategory[] = [
-  { name: "Languages", items: ["TypeScript", "JavaScript", "Java"] },
+  { name: "Languages", items: ["C#", "TypeScript", "JavaScript", "Java"] },
   { name: "Frontend", items: ["React", "Next.js", "Tailwind CSS"] },
-  { name: "Backend", items: ["Node.js", "REST APIs"] },
+  { name: "Backend", items: ["Node.js", ".NET Core", "Spring", "REST APIs"] },
   { name: "Data", items: ["SQL", "MySQL", "SQLite"] },
   {
     name: "Cloud / DevOps",
@@ -122,7 +122,15 @@ export const skillCategories: SkillCategory[] = [
   },
   {
     name: "Tools",
-    items: ["Git", "Jira", "Trello", "Bitbucket", "Confluence"],
+    items: [
+      "Git",
+      "Jira",
+      "Trello",
+      "Bitbucket",
+      "Confluence",
+      "Figma",
+      "Photoshop",
+    ],
   },
   {
     name: "Methods",
