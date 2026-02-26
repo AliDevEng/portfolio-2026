@@ -57,14 +57,6 @@ export interface Project {
   confidential?: boolean;
 }
 
-export interface AtsSection {
-  professionalSummary: string;
-  coreSkills: string[];
-  toolsAndTechnologies: string[];
-  experienceHighlights: string[];
-  educationAndCertifications: string[];
-}
-
 export interface ContactData {
   heading: string;
   subtext: string;

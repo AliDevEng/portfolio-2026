@@ -130,9 +130,6 @@ function TechMarqueeRow({
                 <p className="text-[1.1rem] leading-none font-semibold text-white uppercase tracking-tight whitespace-nowrap">
                   {skill.name}
                 </p>
-                <p className="mt-0.5 text-[10px] uppercase tracking-wide text-slate-500">
-                  Technology
-                </p>
               </div>
             </div>
           );

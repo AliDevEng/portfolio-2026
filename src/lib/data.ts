@@ -6,7 +6,6 @@ import type {
   ExperienceEntry,
   SkillCategory,
   Project,
-  AtsSection,
   ContactData,
   NavLink,
 } from "./types";
@@ -25,7 +24,7 @@ export const personal: PersonalInfo = {
   name: "Ali Rezai",
   location: "Malmö, Sweden",
   title: "Full Stack Developer | Software Engineer",
-  email: "aliabc@live.se",
+  email: "ali.rezai.developer@gmail.com",
   linkedin: "https://www.linkedin.com/in/ali-rezai-314172168",
   github: "https://github.com/AliDevEng",
   resumePdf: "/Ali-Rezai-CV.pdf",
@@ -35,7 +34,7 @@ export const personal: PersonalInfo = {
 export const heroData: HeroData = {
   heading: "Full Stack Developer building scalable web applications",
   subtext:
-    "Software Engineer Intern with a structured engineering mindset, building modern web applications with Node.js, TypeScript, React, and SQL — with growing cloud focus (Azure Fundamentals).",
+    "Software Engineer Intern with a structured engineering mindset, building modern web applications with Node.js, TypeScript, React, and SQL — with growing cloud focus (Azure).",
   keywordLine:
     "Full Stack • Backend • REST APIs • SQL • CI/CD • Docker • Azure • Agile",
   ctaPrimary: { label: "Let's Connect", href: "#contact" },
@@ -48,10 +47,11 @@ export const codeSnippetData: CodeSnippetData = {
   lines: [
     `const developer = {`,
     `  name: "Ali Rezai",`,
-    `  role: "Full Stack Developer / Software Engineer",`,
+    `  role: "Full Stack Developer",`,
     `  location: "Malmö, Sweden",`,
-    `  stack: ["Node.js", "TypeScript", "React", "SQL", "Docker", "CI/CD", "Azure (AZ-900)"],`,
-    `  focus: ["Backend APIs", "Frontend UX", "Quality", "Maintainability"]`,
+    `  stack: ["Node.js", "TypeScript", "React", "Java", "C#",`,
+    `          ".NET", "SQL", "Docker", "CI/CD"],`,
+    `  focus: ["Backend APIs", "Frontend"]`,
     `}`,
     ``,
     `export default developer;`,
@@ -76,7 +76,7 @@ export const experienceEntries: ExperienceEntry[] = [
   {
     company: "Peak Energy",
     role: "Software Engineer Intern",
-    dates: "Dec 2025 – Present",
+    dates: "2025 – Present",
     location: "Malmö",
     bullets: [
       "Built and improved backend and frontend features using Node.js, TypeScript, and React.",
@@ -172,69 +172,8 @@ export const projects: Project[] = [
   },
 ];
 
-/* ─── ATS / Recruiter summary ─── */
-export const atsSummary: AtsSection = {
-  professionalSummary: `
-Full Stack Developer and Software Engineer Intern based in Malmö, Sweden, with hands-on experience building scalable web applications using Node.js, TypeScript, React, and SQL databases.
-
-Strong foundation in backend API development, frontend architecture, and system integration. Experience working in Agile environments with CI/CD pipelines, Docker containerization, and Microsoft Azure Fundamentals (AZ-900).
-
-Background in structured engineering disciplines, bringing a quality-driven and documentation-focused approach to software development.
-
-Open to Internship, Junior Full Stack, Backend, and Cloud-oriented roles.
-  `,
-
-  coreSkills: [
-    "Full Stack Development",
-    "Backend Development",
-    "Frontend Development",
-    "REST API Design & Integration",
-    "SQL Database Modeling",
-    "System Integration",
-    "CI/CD Pipelines",
-    "Docker & Containerization",
-    "Cloud Fundamentals (Microsoft Azure)",
-    "Agile Methodologies",
-    "Technical Documentation",
-    "Quality & Maintainability Focus",
-  ],
-
-  toolsAndTechnologies: [
-    "TypeScript",
-    "JavaScript",
-    "Java",
-    "Node.js",
-    "React",
-    "Next.js",
-    "Tailwind CSS",
-    "SQL (MySQL, SQLite)",
-    "Docker",
-    "CircleCI",
-    "Git",
-    "Jira",
-    "Bitbucket",
-    "Confluence",
-    "Trello",
-    "Microsoft Azure (AZ-900)",
-  ],
-
-  experienceHighlights: [
-    "Developed and maintained backend services and REST APIs using Node.js and TypeScript.",
-    "Implemented frontend features using React with focus on usability and maintainability.",
-    "Worked with relational databases and structured SQL queries.",
-    "Supported CI/CD workflows and containerized deployments using Docker.",
-    "Collaborated in Agile development teams with structured task management.",
-    "Applied engineering discipline and quality assurance mindset from previous technical career.",
-  ],
-
-  educationAndCertifications: [
-    "Fullstack Developer (Java track) – Lunds Tekniska Högskola (ongoing)",
-    "Microsoft Azure Fundamentals (AZ-900)",
-  ],
-};
-
 /* ─── Contact ─── */
 export const contactData: ContactData = {
   heading: "Get in Touch",
-  subtext: "Want to talk about an internship or junior role? Send a message.",
+  subtext: "Want to talk about a junior role or other ideas? Send a message.",
 };

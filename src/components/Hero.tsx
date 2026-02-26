@@ -75,7 +75,7 @@ export default function Hero() {
               variants={item}
               className="mt-2 text-xs text-red-400/70 font-medium"
             >
-              Open to: Internship / Junior Full Stack / Backend / Cloud-leaning
+              Open to: Junior Full Stack / Backend / Cloud-leaning
               roles
             </motion.p>
 

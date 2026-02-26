@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { Menu, Github, Linkedin, Mail, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,32 @@ import { navLinks, personal } from "@/lib/data";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  // Refs for the sliding pill
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [pillStyle, setPillStyle] = useState({ left: 0, width: 0, opacity: 0 });
+
+  // Compute pill position from a given href key
+  const updatePill = useCallback((key: string | null) => {
+    if (!key || !linkRefs.current[key] || !navContainerRef.current) {
+      setPillStyle((prev) => ({ ...prev, opacity: 0 }));
+      return;
+    }
+    const container = navContainerRef.current.getBoundingClientRect();
+    const el = linkRefs.current[key]!.getBoundingClientRect();
+    setPillStyle({
+      left: el.left - container.left,
+      width: el.width,
+      opacity: 1,
+    });
+  }, []);
+
+  // When hovered link changes, move pill there; when unhovered, snap to active
+  useEffect(() => {
+    updatePill((hovered ?? activeSection) || null);
+  }, [hovered, activeSection, updatePill]);
 
   /* Scroll shadow */
   useEffect(() => {
@@ -68,32 +94,42 @@ export default function Navbar() {
           <span className="text-red-400">.</span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                activeSection === link.href.replace("#", "")
-                  ? "text-red-400 bg-red-400/10"
-                  : "text-gray-400 hover:text-white hover:bg-gray-800/50"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+        {/* Desktop links with sliding pill */}
+        <div
+          ref={navContainerRef}
+          className="hidden md:flex items-center gap-1 relative"
+          onMouseLeave={() => setHovered(null)}
+        >
+          {/* Animated pill background */}
+          <span
+            className="absolute top-0 h-full rounded-lg bg-white/[0.06] border border-white/[0.08] pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+            style={{
+              left: pillStyle.left,
+              width: pillStyle.width,
+              opacity: pillStyle.opacity,
+            }}
+          />
 
-          <Link
-            href="#ats"
-            className={`px-2 py-1 ml-1 text-xs font-semibold rounded border transition-colors ${
-              activeSection === "ats"
-                ? "text-red-400 border-red-400/40 bg-red-400/10"
-                : "text-gray-500 border-gray-700 hover:text-red-400 hover:border-red-400/40"
-            }`}
-          >
-            ATS
-          </Link>
+          {navLinks.map((link) => {
+            const key = link.href.replace("#", "");
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                ref={(el) => {
+                  linkRefs.current[key] = el;
+                }}
+                onMouseEnter={() => setHovered(key)}
+                className={`relative z-10 px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
+                  activeSection === key
+                    ? "text-red-400"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Desktop social icons */}
@@ -162,14 +198,6 @@ export default function Navbar() {
                   </Link>
                 </SheetClose>
               ))}
-              <SheetClose asChild>
-                <Link
-                  href="#ats"
-                  className="block px-3 py-2.5 text-base font-medium text-gray-500 hover:text-red-400 hover:bg-gray-800/50 rounded-lg transition-colors"
-                >
-                  ATS Summary
-                </Link>
-              </SheetClose>
 
               <div className="mt-6 pt-6 border-t border-gray-800 flex items-center gap-3">
                 <a

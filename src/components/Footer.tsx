@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { navLinks, personal } from "@/lib/data";
 
-const footerLinks = [...navLinks, { label: "ATS", href: "#ats" }];
+const footerLinks = [...navLinks];
 
 export default function Footer() {
   return (
