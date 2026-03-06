@@ -16,7 +16,7 @@ export default function About() {
         <h2 className="text-3xl font-bold text-white sm:text-4xl">
           {aboutData.heading}{" "}
           <span className="text-red-400">
-            {aboutData.subheading.replace("About the engineer", "The Engineer")}
+            {aboutData.subheading}
           </span>
         </h2>
 
