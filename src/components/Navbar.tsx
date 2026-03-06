@@ -17,7 +17,7 @@ import { navLinks, personal } from "@/lib/data";
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [hovered, setHovered] = useState<string | null>(null);
+  const [isHoveringNav, setIsHoveringNav] = useState(false);
 
   // Refs for the sliding pill
   const navContainerRef = useRef<HTMLDivElement>(null);
@@ -39,11 +39,6 @@ export default function Navbar() {
     });
   }, []);
 
-  // When hovered link changes, move pill there; when unhovered, snap to active
-  useEffect(() => {
-    updatePill((hovered ?? activeSection) || null);
-  }, [hovered, activeSection, updatePill]);
-
   /* Scroll shadow */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -61,7 +56,10 @@ export default function Navbar() {
       if (!el) return;
       const obs = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+            if (!isHoveringNav) updatePill(id);
+          }
         },
         { rootMargin: "-40% 0px -55% 0px" },
       );
@@ -70,7 +68,7 @@ export default function Navbar() {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [isHoveringNav, updatePill]);
 
   return (
     <header
@@ -98,7 +96,10 @@ export default function Navbar() {
         <div
           ref={navContainerRef}
           className="hidden md:flex items-center gap-1 relative"
-          onMouseLeave={() => setHovered(null)}
+          onMouseLeave={() => {
+            setIsHoveringNav(false);
+            updatePill(activeSection || null);
+          }}
         >
           {/* Animated pill background */}
           <span
@@ -119,7 +120,10 @@ export default function Navbar() {
                 ref={(el) => {
                   linkRefs.current[key] = el;
                 }}
-                onMouseEnter={() => setHovered(key)}
+                onMouseEnter={() => {
+                  setIsHoveringNav(true);
+                  updatePill(key);
+                }}
                 className={`relative z-10 px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-200 ${
                   activeSection === key
                     ? "text-red-400"

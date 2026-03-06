@@ -61,11 +61,14 @@ export const codeSnippetData: CodeSnippetData = {
 /* ─── About ─── */
 export const aboutData: AboutData = {
   heading: "About",
-  subheading: "About the engineer",
+  subheading: "Me",
   paragraph:
-    "I'm a Software Engineer Intern at Peak Energy, bringing a structured and quality-driven mindset from my previous background in civil and structural engineering. I enjoy building maintainable systems and bridging backend, frontend, and infrastructure. I'm motivated to grow in cloud computing and modern engineering practices — always focused on delivering clean, reliable solutions.",
+    "I am currently a Software Engineer Intern at Peak Energy. I moved into software from a civil and structural engineering background, which shaped how I work: structured, detail-oriented, and focused on quality. I enjoy building maintainable solutions across backend and frontend, and I am continuously developing my skills in cloud and modern engineering practices.",
   stats: [
-    { label: "Current Role", value: "Internship: Peak Energy" },
+    {
+      label: "Current Role",
+      value: "Software Engineer Intern at Peak Energy",
+    },
     { label: "Core Stack", value: "Node.js • TypeScript • React • SQL" },
   ],
   image: "/projects/developer.png",
@@ -175,5 +178,5 @@ export const projects: Project[] = [
 /* ─── Contact ─── */
 export const contactData: ContactData = {
   heading: "Get in Touch",
-  subtext: "Want to talk about a junior role or other ideas? Send a message.",
+  subtext: "Want to talk about a junior role or collaboration? Email me directly.",
 };
